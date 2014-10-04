@@ -1,9 +1,10 @@
 package org.dmytrij.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Дмитрий on 04.10.14.
@@ -15,6 +16,13 @@ public class Performance {
     @Id
     @Column
     private long id;
+    @OneToMany(mappedBy = "performance")
+    @Fetch(FetchMode.JOIN)
+    private Set<Composition> compositions;
+
+    public Set<Composition> getCompositions() {
+        return compositions;
+    }
 
     public long getId() {
         return id;

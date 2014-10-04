@@ -1,9 +1,6 @@
 package org.dmytrij.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -22,6 +19,12 @@ public class Student {
     private String lastName;
     @Column(name = "BIRTH_DATE")
     private Date birthDate;
+    @ManyToOne(targetEntity = Instrument.class)
+    private Instrument instrument;
+
+    public Instrument getInstrument() {
+        return instrument;
+    }
 
     public long getId() {
         return id;

@@ -1,9 +1,6 @@
 package org.dmytrij.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Дмитрий on 04.10.14.
@@ -19,6 +16,12 @@ public class Composition {
     private String title;
     @Column(name = "AUTHOR")
     private String author;
+    @ManyToOne(targetEntity = Performance.class)
+    private Performance performance;
+
+    public Performance getPerformance() {
+        return performance;
+    }
 
     public long getId() {
         return id;

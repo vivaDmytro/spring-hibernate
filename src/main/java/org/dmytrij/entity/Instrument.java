@@ -1,10 +1,11 @@
 package org.dmytrij.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Дмитрий on 04.10.14.
@@ -24,6 +25,13 @@ public class Instrument {
     private Date prodDate;
     @Column(name = "PURCH_DATE")
     private Date purchDate;
+    @OneToMany(mappedBy = "instrument")
+    @Fetch(FetchMode.JOIN)
+    private Set<Student> students;
+
+    public Set<Student> getStudents() {
+        return students;
+    }
 
     public long getId() {
         return id;
