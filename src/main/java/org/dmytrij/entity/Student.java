@@ -1,15 +1,26 @@
 package org.dmytrij.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by Дмитрий on 04.10.14.
  */
+@Entity
+@Table(name = "STUDENT")
 public class Student {
 
+    @Id
+    @Column
     private long id;
+    @Column(name = "FIRST_NAME")
     private String firstName;
+    @Column(name = "LAST_NAME")
     private String lastName;
+    @Column(name = "BIRTH_DATE")
     private Date birthDate;
 
     public long getId() {

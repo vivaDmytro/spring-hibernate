@@ -1,12 +1,23 @@
 package org.dmytrij.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by Дмитрий on 04.10.14.
  */
+@Entity
+@Table(name = "COMPOSITION")
 public class Composition {
 
+    @Id
+    @Column
     private long id;
+    @Column(name = "TITLE")
     private String title;
+    @Column(name = "AUTHOR")
     private String author;
 
     public long getId() {
