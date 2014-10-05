@@ -15,10 +15,21 @@ public class Performance {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToMany(mappedBy = "performance")
     @Fetch(FetchMode.JOIN)
     private Set<Composition> compositions;
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinTable(name="PERFORMANCE_PARTICIPANTS", joinColumns={
+            @JoinColumn(name="STUDENT_ID", referencedColumnName="ID")
+    },
+            inverseJoinColumns={@JoinColumn(name="PERFORMANCE_ID", referencedColumnName="ID")})
+    private Set<Student> students;
+
+    public Set<Student> getStudents() {
+        return students;
+    }
 
     public Set<Composition> getCompositions() {
         return compositions;

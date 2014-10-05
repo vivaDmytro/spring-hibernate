@@ -11,6 +11,7 @@ public class Composition {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "TITLE")
     private String title;
