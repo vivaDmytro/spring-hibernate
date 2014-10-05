@@ -77,4 +77,15 @@ public class Instrument {
     public void setPurchDate(Date purchDate) {
         this.purchDate = purchDate;
     }
+
+    @Override
+    public String toString() {
+        return "Instrument{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", producer='" + producer + '\'' +
+                ", prodDate=" + prodDate +
+                ", purchDate=" + purchDate +
+                '}';
+    }
 }

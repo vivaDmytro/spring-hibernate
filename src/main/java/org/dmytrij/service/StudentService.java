@@ -16,4 +16,5 @@ public interface StudentService {
     void remove(Student student);
     void changeInstruments(Student student1, Student student2);
     List<Student> getByInstrumentType(String type);
+    List<Student> getByInstrumentDetails(String producer, Date prodDate);
 }

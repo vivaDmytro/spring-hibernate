@@ -1,6 +1,10 @@
 package org.dmytrij.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Дмитрий on 04.10.14.
@@ -17,11 +21,16 @@ public class Composition {
     private String title;
     @Column(name = "AUTHOR")
     private String author;
-    @ManyToOne(targetEntity = Performance.class)
-    private Performance performance;
+    @OneToMany(mappedBy = "composition")
+    @Fetch(FetchMode.JOIN)
+    private Set<Performance> performances;
 
-    public Performance getPerformance() {
-        return performance;
+    public Set<Performance> getPerformances() {
+        return performances;
+    }
+
+    public void setPerformances(Set<Performance> performances) {
+        this.performances = performances;
     }
 
     public long getId() {
@@ -46,5 +55,14 @@ public class Composition {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Composition{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
     }
 }

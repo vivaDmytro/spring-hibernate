@@ -2,6 +2,7 @@ package org.dmytrij.dao;
 
 import org.dmytrij.entity.Student;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,4 +14,5 @@ public interface StudentDao {
     void saveOrUpdate(Student student);
     void remove(Student student);
     List<Student> getByInstrumentType(String type);
+    List<Student> getByInstrumentDetails(String producer, Date prodDate);
 }

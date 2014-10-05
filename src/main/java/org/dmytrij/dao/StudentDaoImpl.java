@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,7 +40,20 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public List<Student> getByInstrumentType(String type) {
 
-       Query query = sessionFactory.getCurrentSession()
-                 .createQuery("from Student as s inner join s.instrument as i where i.type=:type");
+       return sessionFactory.getCurrentSession()
+               .createQuery("select s from Student as s inner join s.instrument as i where i.type=:type")
+               .setString("type", type)
+               .list();
+    }
+
+    @Override
+    public List<Student> getByInstrumentDetails(String producer, Date prodDate) {
+
+        return sessionFactory.getCurrentSession()
+                .createQuery("select s from Student " +
+                        "as s inner join s.instrument as i where i.producer=:producer and i.prodDate=:prodDate")
+                .setString("producer", producer)
+                .setDate("prodDate", prodDate)
+                .list();
     }
 }

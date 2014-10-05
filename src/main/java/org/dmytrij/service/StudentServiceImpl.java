@@ -60,4 +60,11 @@ public class StudentServiceImpl implements StudentService {
 
         return studentDao.getByInstrumentType(type);
     }
+
+    @Override
+    @Transactional
+    public List<Student> getByInstrumentDetails(String producer, Date prodDate) {
+
+        return studentDao.getByInstrumentDetails(producer, prodDate);
+    }
 }

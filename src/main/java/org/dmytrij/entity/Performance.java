@@ -1,8 +1,5 @@
 package org.dmytrij.entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,22 +14,28 @@ public class Performance {
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany(mappedBy = "performance")
-    @Fetch(FetchMode.JOIN)
-    private Set<Composition> compositions;
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="PERFORMANCE_PARTICIPANTS", joinColumns={
-            @JoinColumn(name="STUDENT_ID", referencedColumnName="ID")
-    },
-            inverseJoinColumns={@JoinColumn(name="PERFORMANCE_ID", referencedColumnName="ID")})
+    @ManyToOne(targetEntity = Composition.class)
+    Composition composition;
+    @OneToMany(targetEntity = Student.class, cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="PERFORMANCE_PARTICIPANTS",
+            joinColumns={@JoinColumn(name="PERFORMANCE_ID")},
+            inverseJoinColumns={@JoinColumn(name="STUDENT_ID")})
     private Set<Student> students;
+
+    public Composition getComposition() {
+        return composition;
+    }
+
+    public void setComposition(Composition composition) {
+        this.composition = composition;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 
     public Set<Student> getStudents() {
         return students;
-    }
-
-    public Set<Composition> getCompositions() {
-        return compositions;
     }
 
     public long getId() {
@@ -41,5 +44,14 @@ public class Performance {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Performance{" +
+                "id=" + id +
+                ", composition=" + composition +
+                ", students=" + students +
+                '}';
     }
 }

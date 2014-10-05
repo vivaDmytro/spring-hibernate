@@ -18,7 +18,7 @@ public class InstrumentServiceImpl implements InstrumentService {
     private InstrumentDao instrumentDao;
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public List<Instrument> getInstruments() {
 
         return instrumentDao.getInstruments();
