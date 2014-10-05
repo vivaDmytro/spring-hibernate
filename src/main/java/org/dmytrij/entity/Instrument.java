@@ -30,6 +30,10 @@ public class Instrument {
     @Fetch(FetchMode.JOIN)
     private Set<Student> students;
 
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
     public Set<Student> getStudents() {
         return students;
     }

@@ -23,6 +23,10 @@ public class Student {
     @ManyToOne(targetEntity = Instrument.class)
     private Instrument instrument;
 
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
+    }
+
     public Instrument getInstrument() {
         return instrument;
     }
